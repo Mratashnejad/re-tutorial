@@ -6,10 +6,14 @@ import { Classes } from './Classes';
 //parent component
 function App() {
 
-  const [age , setAge] = useState (0)
-  const increaseAge = () =>{
-    setAge (age + 1)
+  const [inputValue , setInputValue] = useState ("")
+  const handleInputValue = (event)=>{
+    setInputValue(event.target.value)
   }
+  // const [age , setAge] = useState (0)
+  // const increaseAge = () =>{
+  //   setAge (age + 1)
+  // }
 
   // const classes = [
   //   {name : "html" , finished : false},
@@ -37,13 +41,21 @@ function App() {
   // ]
   // //variable
   return (
+
     <div>
-      <h1>{age}</h1>
-      {/* using external function */}
-      <button onClick={increaseAge}> increase Age</button>
-      {/* using internal function */}
-      <button onClick={() => setAge (age - 1)}>Decrease Age</button>
+      <input type="text" onChange={handleInputValue} />
+      <h1>{inputValue}</h1>
     </div>
+
+
+
+    // <div>
+    //   <h1>{age}</h1>
+    //   {/* using external function */}
+    //   <button onClick={increaseAge}> increase Age</button>
+    //   {/* using internal function */}
+    //   <button onClick={() => setAge (age - 1)}>Decrease Age</button>
+    // </div>
 
 
     // <div>
