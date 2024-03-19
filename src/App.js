@@ -6,7 +6,11 @@ import { Classes } from './Classes';
 //parent component
 function App() {
 
-  const [textColor , setTextColor] = useState ("red")
+const [count , setCount] = useState (0)
+
+
+
+  // const [textColor , setTextColor] = useState ("red")
 
 
 
@@ -54,9 +58,16 @@ function App() {
   return (
 
     <div>
-      <button onClick={()=>setTextColor(textColor === "red" ? "green" : "red")}>change color</button>
-      <h1 style ={{color : textColor}}>alireza</h1>
+      <button onClick={()=> setCount(count +1)}>increase</button>
+      <button onClick={()=> setCount(count -1)}>decereas</button>
+      <button onClick={()=> setCount(0)}>set to zero</button>
+    <h1>{count}</h1>
     </div>
+
+    // <div>
+    //   <button onClick={()=>setTextColor(textColor === "red" ? "green" : "red")}>change color</button>
+    //   <h1 style ={{color : textColor}}>alireza</h1>
+    // </div>
 
     // <div>
     // <button onClick={toggleText}>show /hide</button>
