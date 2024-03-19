@@ -1,17 +1,22 @@
 import './App.css';
 // import {User} from "./User";
 
+import { useState } from 'react';
 import { Classes } from './Classes';
 //parent component
 function App() {
 
-  const classes = [
-    {name : "html" , finished : false},
-    {name : "javascript" , finished : true},
-    {name : "css" , finished : true},
-    {name : "python" , finished : true},
-  ];
+  const [age , setAge] = useState (0)
+  const increaseAge = () =>{
+    setAge (age + 1)
+  }
 
+  // const classes = [
+  //   {name : "html" , finished : false},
+  //   {name : "javascript" , finished : true},
+  //   {name : "css" , finished : true},
+  //   {name : "python" , finished : true},
+  // ];
 
   // const age  = 2;
   // if (age>20) console.log('over age')
@@ -32,12 +37,20 @@ function App() {
   // ]
   // //variable
   return (
-
     <div>
-      {classes.map((classItem,index)=>{
-        return <Classes key ={index} name={classItem.name} index={index} finished={classItem.finished} />
-      })}
+      <h1>{age}</h1>
+      {/* using external function */}
+      <button onClick={increaseAge}> increase Age</button>
+      {/* using internal function */}
+      <button onClick={() => setAge (age - 1)}>Decrease Age</button>
     </div>
+
+
+    // <div>
+    //   {classes.map((classItem,index)=>{
+    //     return <Classes key ={index} name={classItem.name} index={index} finished={classItem.finished} />
+    //   })}
+    // </div>
 
 
     // <div>
