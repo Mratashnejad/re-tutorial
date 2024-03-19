@@ -6,10 +6,21 @@ import { Classes } from './Classes';
 //parent component
 function App() {
 
-  const [inputValue , setInputValue] = useState ("")
-  const handleInputValue = (event)=>{
-    setInputValue(event.target.value)
-  }
+  const [textColor , setTextColor] = useState ("red")
+
+
+
+  // const [showText , setShowText] = useState(true)
+
+  // const toggleText=()=>{
+  //   setShowText(!showText)
+  // }
+
+  
+  // const [inputValue , setInputValue] = useState ("")
+  // const handleInputValue = (event)=>{
+  //   setInputValue(event.target.value)
+  // }
   // const [age , setAge] = useState (0)
   // const increaseAge = () =>{
   //   setAge (age + 1)
@@ -43,9 +54,18 @@ function App() {
   return (
 
     <div>
-      <input type="text" onChange={handleInputValue} />
-      <h1>{inputValue}</h1>
+      <button onClick={()=>setTextColor(textColor === "red" ? "green" : "red")}>change color</button>
+      <h1 style ={{color : textColor}}>alireza</h1>
     </div>
+
+    // <div>
+    // <button onClick={toggleText}>show /hide</button>
+    // {showText && <h1>Alireza Atashnejad</h1>}
+    // </div>
+    // <div>
+    //   <input type="text" onChange={handleInputValue} />
+    //   <h1>{inputValue}</h1>
+    // </div>
 
 
 
