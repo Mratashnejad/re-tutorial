@@ -1,9 +1,19 @@
 import './App.css';
-import {User} from "./User";
+// import {User} from "./User";
+
+import { Classes } from './Classes';
 //parent component
 function App() {
 
-  const age  = 2;
+  const classes = [
+    {name : "html" , finished : false},
+    {name : "javascript" , finished : true},
+    {name : "css" , finished : true},
+    {name : "python" , finished : true},
+  ];
+
+
+  // const age  = 2;
   // if (age>20) console.log('over age')
   // else console.log('under age')
   //OR
@@ -12,22 +22,30 @@ function App() {
   
 
   //lists : filter , forech , map
-  const names = ["ali" , "reza" , "xashi" , "afi"]
+  // const names = ["ali" , "reza" , "xashi" , "afi"]
   
-  const users = [
-    {name: "ali" , age:31},
-    {name:"reza" , age:7},
-    {name:"xashi" , age:2},
-    {name:"afi" , age :30}
-  ]
-  //variable
+  // const users = [
+  //   {name: "ali" , age:31},
+  //   {name:"reza" , age:7},
+  //   {name:"xashi" , age:2},
+  //   {name:"afi" , age :30}
+  // ]
+  // //variable
   return (
-    <div>
-      {users.map((user,index)=>{
-        return <User key={index} name={user.name} age={user.age} />
-      })}
 
+    <div>
+      {classes.map((classItem,index)=>{
+        return <Classes key ={index} name={classItem.name} index={index} finished={classItem.finished} />
+      })}
     </div>
+
+
+    // <div>
+    //   {users.map((user,index)=>{
+    //     return <User key={index} name={user.name} age={user.age} />
+    //   })}
+
+    // </div>
 
     // <div>
     //   {users.map((user , index)=>{
@@ -68,10 +86,11 @@ function App() {
 }
 
 
+
 //funcation
-const getName = ()=>{
-  return 'alireza'
-}
+// const getName = ()=>{
+//   return 'alireza'
+// }
 
 //props
 // const props = {
@@ -83,31 +102,31 @@ const getName = ()=>{
 
 //component
 
-const GetNameComponnent = (props)=>{
+// const GetNameComponnent = (props)=>{
   
-  return (
-  //  <div>
-  //   <h1>Alireza</h1> 
-  //   <h2>30</h2>
-  //   <h3>alirezaatashnejad@gmail.com</h3>
-  // </div>
-    <div>
-      <h1>{props.name}</h1>
-      <h1>{props.age}</h1>
-      <h1>{props.email}</h1>
-    </div>
+//   return (
+//   //  <div>
+//   //   <h1>Alireza</h1> 
+//   //   <h2>30</h2>
+//   //   <h3>alirezaatashnejad@gmail.com</h3>
+//   // </div>
+//     <div>
+//       <h1>{props.name}</h1>
+//       <h1>{props.age}</h1>
+//       <h1>{props.email}</h1>
+//     </div>
 
-  )
-}
+//   )
+// }
 //component Job
 
-const Job = (props)=>{
-  return(
-   <div>
-    <h1>{props.salary}</h1>
-    <h1>{props.position}</h1>
-    <h1>{props.company}</h1>
-   </div>
-  )
-}
+// const Job = (props)=>{
+//   return(
+//    <div>
+//     <h1>{props.salary}</h1>
+//     <h1>{props.position}</h1>
+//     <h1>{props.company}</h1>
+//    </div>
+//   )
+// }
 export default App;
