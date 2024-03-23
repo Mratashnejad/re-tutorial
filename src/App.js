@@ -2,7 +2,8 @@ import './App.css';
 // import {User} from "./User";
 
 import { useState } from 'react';
-import { Classes } from './Classes';
+//import { Classes } from './Classes';
+import Course from './Course';
 //parent component
 function App() {
 
@@ -70,13 +71,24 @@ function App() {
 
     const course = {
       id : courselist.length === 0 ? 1 : courselist[courselist.length -1].id + 1,
-      courseName : newCourse}
+      courseName : newCourse,
+      isCompleted : false,
+    }
     const newCourseList = [...courselist , course]
     setCourseList(newCourseList)
   }
 
   const deleteCourse = (courseId) =>{
     setCourseList(courselist.filter((course)=> courseId !== course.id))
+  }
+
+  const completeCourse = (courseId)=>{
+    const newCourseList = courselist.map((course)=>{
+      if(course.id === courseId) return {...course ,isCompleted : !course.isCompleted}
+      else
+      return course
+    })
+    setCourseList(newCourseList)
   }
 
   return (
@@ -87,12 +99,12 @@ function App() {
           <button onClick={addCourse}>Add Course</button>
         </div>
         
-        <div className='list'>\
-        {courselist.map ((course , index) => {
-          return ( <div key={`div_${index}`}>
-            <h1 key={`h1_${index}`}>{course.courseName}</h1>
-            <button key={`btn_${index}`} onClick={()=> deleteCourse(course.id)}>x</button>
-          </div>)
+        <div className='list'>
+        {courselist.map ((course,index) => {
+          return ( 
+            <Course key = {index} course={course} deleteCourse={deleteCourse} 
+            completeCourse = {completeCourse}/>
+          )
         })}
         </div>
       </div>
