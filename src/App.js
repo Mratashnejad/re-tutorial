@@ -6,7 +6,10 @@ import { Classes } from './Classes';
 //parent component
 function App() {
 
-const [count , setCount] = useState (0)
+//Exam
+
+
+// const [count , setCount] = useState (0)
 
 
 
@@ -55,14 +58,52 @@ const [count , setCount] = useState (0)
   //   {name:"afi" , age :30}
   // ]
   // //variable
+
+  const [courselist , setCourseList] = useState([]);
+  const [newCourse , setNewCourse] = useState("");
+  const handelChange = (event)=>{
+    setNewCourse(event.target.value)
+  }
+
+
+  const addCourse =()=>{
+
+    const course = {
+      id : courselist.length === 0 ? 1 : courselist[courselist.length -1].id + 1,
+      courseName : newCourse}
+    const newCourseList = [...courselist , course]
+    setCourseList(newCourseList)
+  }
+
+  const deleteCourse = (courseId) =>{
+    setCourseList(courselist.filter((course)=> courseId !== course.id))
+  }
+
   return (
 
-    <div>
-      <button onClick={()=> setCount(count +1)}>increase</button>
-      <button onClick={()=> setCount(count -1)}>decereas</button>
-      <button onClick={()=> setCount(0)}>set to zero</button>
-    <h1>{count}</h1>
-    </div>
+      <div className='App'>
+        <div className='add-course'>
+          <input type="text" onChange={handelChange}></input>
+          <button onClick={addCourse}>Add Course</button>
+        </div>
+        
+        <div className='list'>\
+        {courselist.map ((course , index) => {
+          return ( <div key={`div_${index}`}>
+            <h1 key={`h1_${index}`}>{course.courseName}</h1>
+            <button key={`btn_${index}`} onClick={()=> deleteCourse(course.id)}>x</button>
+          </div>)
+        })}
+        </div>
+      </div>
+
+
+    // <div>
+    //   <button onClick={()=> setCount(count +1)}>increase</button>
+    //   <button onClick={()=> setCount(count -1)}>decereas</button>
+    //   <button onClick={()=> setCount(0)}>set to zero</button>
+    // <h1>{count}</h1>
+    // </div>
 
     // <div>
     //   <button onClick={()=>setTextColor(textColor === "red" ? "green" : "red")}>change color</button>
