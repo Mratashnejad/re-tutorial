@@ -1,11 +1,19 @@
 import './App.css';
 // import {User} from "./User";
 import Text from './text';
-import { useEffect, useState } from 'react';
+import { Profiler, useEffect, useState } from 'react';
 //import { Classes } from './Classes';
 //import Course from './Course';
 
 import axios from 'axios';
+//routing
+import { BrowserRouter as Router , Routes ,Route , Link} from 'react-router-dom';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Contact } from './pages/Contact';
+import { Nav } from './pages/Nav';
+import { Footer } from './pages/Footer';
+import {Profile} from './pages/Profile';
 //parent component
 function App() {
   //Exam
@@ -88,82 +96,109 @@ function App() {
   // fetch('https://catfact.ninja/fact').then((res) => res.json()).then((data)=>{
   //   console.log(data)
   // })
-  const [catFact, setCatFact] = useState('');
-  useEffect(() => {
-    fetchFact();
-
-  },[]);
-
-  const fetchFact=()=>{
-    axios.get('https://catfact.ninja/fact').then((res) => {
-      console.log(res.data);
-      setCatFact(res.data.fact);
-    });
-  }
-
-  const [name ,setName] = useState("")
-  const [predictedResult , setPredictedResult] = useState({})
-  const fetchAge=()=>{
-    axios.get(`https://api.agify.io/?name=${name}`).then((res)=>{
-      console.log(res.data)
-      setPredictedResult(res.data)
-    })
-  }
-//https://excuser-three.vercel.app/v1/excuse/party
-//https://excuser-three.vercel.app/v1/excuse/family
-//https://excuser-three.vercel.app/v1/excuse/office
 
 
-const [generateExcuse , setGenerateExcuse] = useState ("")
-const fetchExcuse = (excuse) => {
-  axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuse}/`)
-    .then((res) => {
-      if (res.data && res.data.length > 0 && res.data[0].excuse) {
-        console.log(res.data[0].excuse);
-        setGenerateExcuse(res.data[0].excuse);
-      } else {
-        console.error("Invalid or empty response data:", res.data);
-        // Handle the case when response data is empty or not as expected
-        setGenerateExcuse("No excuse found"); // Example: Set a default message
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching excuse:", error);
-      // Handle the error case
-      setGenerateExcuse("Error fetching excuse"); // Example: Set a default error message
-    });
-};
+
+  //API
+//   const [catFact, setCatFact] = useState('');
+//   useEffect(() => {
+//     fetchFact();
+
+//   },[]);
+
+//   const fetchFact=()=>{
+//     axios.get('https://catfact.ninja/fact').then((res) => {
+//       console.log(res.data);
+//       setCatFact(res.data.fact);
+//     });
+//   }
+
+//   const [name ,setName] = useState("")
+//   const [predictedResult , setPredictedResult] = useState({})
+//   const fetchAge=()=>{
+//     axios.get(`https://api.agify.io/?name=${name}`).then((res)=>{
+//       console.log(res.data)
+//       setPredictedResult(res.data)
+//     })
+//   }
+// //https://excuser-three.vercel.app/v1/excuse/party
+// //https://excuser-three.vercel.app/v1/excuse/family
+// //https://excuser-three.vercel.app/v1/excuse/office
 
 
-  return (
-    // example 3
-    <div className='App'>
-      <div>
-      <h1>Excuse API</h1>
-      <button onClick={()=>fetchExcuse("office")}>Office</button>
-      <button onClick={()=>fetchExcuse("party")}>party</button>
-      <button onClick={()=>fetchExcuse("family")}>family</button>
-      <h2>{generateExcuse}</h2>
-      </div>
-{/* example 1 */}
-    <div>
-      <h1>Cat Fact API</h1>
-      <button onClick={fetchFact}>Fetch Data</button>
-      <p>{catFact}</p>
-    </div>
- {/* example 2 */}
+// const [generateExcuse , setGenerateExcuse] = useState ("")
+// const fetchExcuse = (excuse) => {
+//   axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuse}/`)
+//     .then((res) => {
+//       if (res.data && res.data.length > 0 && res.data[0].excuse) {
+//         console.log(res.data[0].excuse);
+//         setGenerateExcuse(res.data[0].excuse);
+//       } else {
+//         console.error("Invalid or empty response data:", res.data);
+//         // Handle the case when response data is empty or not as expected
+//         setGenerateExcuse("No excuse found"); // Example: Set a default message
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching excuse:", error);
+//       // Handle the error case
+//       setGenerateExcuse("Error fetching excuse"); // Example: Set a default error message
+//     });
+// };
 
-      <div>
-      <span>
-      <h1>Age predicter API</h1>
-      <input placeholder='ex. Alireza ...' onChange={(event)=>setName(event.target.value)}></input>
-      <button onClick={fetchAge}>Predict Age</button>
-      <h1>age is : {predictedResult?.age}</h1>
-      <h1>count is : {predictedResult?.count}</h1>
-      </span>
-      </div>
-      </div>
-  );
+
+
+return(
+  <div className="App">
+    <Router>
+      <div><h2>Header</h2></div>
+      <Nav />
+
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='/profile/:name/:id' element={<Profile/>}/>
+
+        <Route path='*' element={<div>Not found</div>}/>
+      </Routes>
+      <Footer />
+    </Router>
+  </div>
+
+
+)
+
+//   return (
+//     // example 3
+//     <div className='App'>
+//       <div>
+//       <h1>Excuse API</h1>
+//       <button onClick={()=>fetchExcuse("office")}>Office</button>
+//       <button onClick={()=>fetchExcuse("party")}>party</button>
+//       <button onClick={()=>fetchExcuse("family")}>family</button>
+//       <button onClick={()=>fetchExcuse("funny")}>funny</button>
+//       <h2>{generateExcuse}</h2>
+//       </div>
+// {/* example 1 */}
+//     <div>
+//       <h1>Cat Fact API</h1>
+//       <button onClick={fetchFact}>Fetch Data</button>
+//       <p>{catFact}</p>
+//     </div>
+//  {/* example 2 */}
+
+//       <div>
+//       <span>
+//       <h1>Age predicter API</h1>
+//       <input placeholder='ex. Alireza ...' onChange={(event)=>setName(event.target.value)}></input>
+//       <button onClick={fetchAge}>Predict Age</button>
+//       <h1>age is : {predictedResult?.age}</h1>
+//       <h1>count is : {predictedResult?.count}</h1>
+//       </span>
+//       </div>
+//       </div>
+//   );
 
   // return ()
 
