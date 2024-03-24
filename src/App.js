@@ -1,9 +1,9 @@
 import './App.css';
 // import {User} from "./User";
-
+import Text from './text';
 import { useState } from 'react';
 //import { Classes } from './Classes';
-import Course from './Course';
+//import Course from './Course';
 //parent component
 function App() {
 
@@ -60,41 +60,48 @@ function App() {
   // ]
   // //variable
 
-  const [courselist , setCourseList] = useState([]);
-  const [newCourse , setNewCourse] = useState("");
-  const handelChange = (event)=>{
-    setNewCourse(event.target.value)
-  }
+  // const [courselist , setCourseList] = useState([]);
+  // const [newCourse , setNewCourse] = useState("");
+  // const handelChange = (event)=>{
+  //   setNewCourse(event.target.value)
+  // }
 
 
-  const addCourse =()=>{
+  // const addCourse =()=>{
 
-    const course = {
-      id : courselist.length === 0 ? 1 : courselist[courselist.length -1].id + 1,
-      courseName : newCourse,
-      isCompleted : false,
-    }
-    const newCourseList = [...courselist , course]
-    setCourseList(newCourseList)
-  }
+  //   const course = {
+  //     id : courselist.length === 0 ? 1 : courselist[courselist.length -1].id + 1,
+  //     courseName : newCourse,
+  //     isCompleted : false,
+  //   }
+  //   const newCourseList = [...courselist , course]
+  //   setCourseList(newCourseList)
+  // }
 
-  const deleteCourse = (courseId) =>{
-    setCourseList(courselist.filter((course)=> courseId !== course.id))
-  }
+  // const deleteCourse = (courseId) =>{
+  //   setCourseList(courselist.filter((course)=> courseId !== course.id))
+  // }
 
-  const completeCourse = (courseId)=>{
-    const newCourseList = courselist.map((course)=>{
-      if(course.id === courseId) return {...course ,isCompleted : !course.isCompleted}
-      else
-      return course
-    })
-    setCourseList(newCourseList)
-  }
+  // const completeCourse = (courseId)=>{
+  //   const newCourseList = courselist.map((course)=>{
+  //     if(course.id === courseId) return {...course ,isCompleted : !course.isCompleted}
+  //     else
+  //     return course
+  //   })
+  //   setCourseList(newCourseList)
+  // }
+  const [showText , setShowText] = useState(false)
 
   return (
 
       <div className='App'>
-        <div className='add-course'>
+
+        <button onClick={()=>setShowText(!showText)}>show text</button>
+        {showText && <Text />}
+      </div>
+  )
+
+        {/* <div className='add-course'>
           <input type="text" onChange={handelChange}></input>
           <button onClick={addCourse}>Add Course</button>
         </div>
@@ -107,7 +114,7 @@ function App() {
           )
         })}
         </div>
-      </div>
+      </div> */}
 
 
     // <div>
@@ -190,7 +197,7 @@ function App() {
   // */}
   //     </header>
   //   </div>
-  );
+  // );
   // return <div className='App'><header className="App-header"> Under</header></div>
 }
 
