@@ -16,6 +16,10 @@ import { Footer } from './pages/Footer';
 import {Profile} from './pages/Profile';
 //parent component
 function App() {
+  const [username , setUsername] = useState('ali')
+
+
+
   //Exam
 
   // const [count , setCount] = useState (0)
@@ -155,11 +159,12 @@ return(
       <Nav />
 
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Home username={username}/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        <Route path='/profile/:name/:id' element={<Profile/>}/>
-
+        {/* <Route path='/profile/:name/:id' element={<Profile/>}/> */}
+        <Route path='/profile' element={
+        <Profile username={username} setUsername={setUsername}/>}/>
         <Route path='*' element={<div>Not found</div>}/>
       </Routes>
       <Footer />
