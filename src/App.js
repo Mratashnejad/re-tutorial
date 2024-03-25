@@ -16,8 +16,6 @@ import { Footer } from './pages/Footer';
 import {Profile} from './pages/Profile';
 //parent component
 function App() {
-  const [username , setUsername] = useState('ali')
-
 
 
   //Exam
@@ -149,11 +147,13 @@ function App() {
 //       setGenerateExcuse("Error fetching excuse"); // Example: Set a default error message
 //     });
 // };
+//context  - state managments
 
-
+const [username , setUsername] = useState('alireza')
 
 return(
   <div className="App">
+
     <Router>
       <div><h2>Header</h2></div>
       <Nav />
@@ -163,8 +163,9 @@ return(
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
         {/* <Route path='/profile/:name/:id' element={<Profile/>}/> */}
-        <Route path='/profile' element={
-        <Profile username={username} setUsername={setUsername}/>}/>
+        <Route path='/profile' element={<Profile username={username}/>}/>
+         {/* <Profile username={username} setUsername={setUsername}/>}/> */}
+        
         <Route path='*' element={<div>Not found</div>}/>
       </Routes>
       <Footer />

@@ -7,7 +7,8 @@ export const Profile=(props)=>{
      let navigate = useNavigate()
     return(
             <React.Fragment>
-              <ChangeProfile setUsername={props.setUsername} />
+              {/* <ChangeProfile setUsername={props.setUsername} /> */}
+              
               <div>this is Profile page of {props.username}</div>
               <button onClick={()=>{navigate('/')}}>GO to Home page</button>
             </React.Fragment>
