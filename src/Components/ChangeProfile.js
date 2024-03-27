@@ -8,7 +8,7 @@ export const ChangeProfile=(props)=>{
         <div>
             <input type="text"  onChange={(event)=>{ setNewUsername( event.target.value ) }}/>
             <button onClick={()=>{props.setUsername(newUsername)}}>change username</button>
-            <button>change profile</button>
+            <button>Change profile</button>
         </div>
     )
 }
