@@ -1,7 +1,7 @@
 import './App.css';
 // import {User} from "./User";
 import Text from './text';
-import { Profiler, useEffect, useState } from 'react';
+import { Profiler, useEffect, useState , createContext } from 'react';
 //import { Classes } from './Classes';
 //import Course from './Course';
 
@@ -14,6 +14,11 @@ import { Contact } from './pages/Contact';
 import { Nav } from './pages/Nav';
 import { Footer } from './pages/Footer';
 import {Profile} from './pages/Profile';
+//profile context
+export const ProfileContext = createContext()
+
+
+
 //parent component
 function App() {
 
@@ -152,24 +157,25 @@ function App() {
 const [username , setUsername] = useState('alireza')
 
 return(
+
   <div className="App">
-
-    <Router>
-      <div><h2>Header</h2></div>
-      <Nav />
-
-      <Routes>
-        <Route path='/' element={<Home username={username}/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/contact' element={<Contact/>}/>
-        {/* <Route path='/profile/:name/:id' element={<Profile/>}/> */}
-        <Route path='/profile' element={<Profile username={username}/>}/>
-         {/* <Profile username={username} setUsername={setUsername}/>}/> */}
-        
-        <Route path='*' element={<div>Not found</div>}/>
-      </Routes>
-      <Footer />
-    </Router>
+    <ProfileContext.Provider value={{username , setUsername}}>
+      <Router>
+        <div><h2>Header</h2></div>
+        <Nav />
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/about' element={<About/>}/>
+            <Route path='/contact' element={<Contact/>}/>
+            {/* <Route path='/profile/:name/:id' element={<Profile/>}/> */}
+            {/* <Route path='/profile' element={<Profile username={username}/>}/> */}
+            <Route path='/profile' element={<Profile />}/>
+            {/* <Profile username={username} setUsername={setUsername}/>}/> */}
+            <Route path='*' element={<div>Not found</div>}/>
+          </Routes>
+          <Footer />
+        </Router>
+      </ProfileContext.Provider>
   </div>
 
 
