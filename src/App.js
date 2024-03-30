@@ -1,9 +1,13 @@
+
 import './App.css';
 // import {User} from "./User";
 import Text from './text';
 import { Profiler, useEffect, useState , createContext } from 'react';
 //import { Classes } from './Classes';
 //import Course from './Course';
+
+//react-query
+import { QueryClient , QueryClientProvider } from 'react-query';
 
 import axios from 'axios';
 //routing
@@ -14,8 +18,10 @@ import { Contact } from './pages/Contact';
 import { Nav } from './pages/Nav';
 import { Footer } from './pages/Footer';
 import {Profile} from './pages/Profile';
+import { queries } from '@testing-library/react';
 //profile context
 export const ProfileContext = createContext()
+
 
 
 
@@ -152,13 +158,25 @@ function App() {
 //       setGenerateExcuse("Error fetching excuse"); // Example: Set a default error message
 //     });
 // };
+
+
+//rect Query
+const client = new QueryClient({defaultOptions :{
+  queries :{refetchOnWindowFocus : false}
+  
+}})
+
+
+
 //context  - state managments
 
 const [username , setUsername] = useState('alireza')
 
 return(
 
+
   <div className="App">
+    <QueryClientProvider client={client}>
     <ProfileContext.Provider value={{username , setUsername}}>
       <Router>
         <div><h2>Header</h2></div>
@@ -176,6 +194,7 @@ return(
           <Footer />
         </Router>
       </ProfileContext.Provider>
+      </QueryClientProvider>
   </div>
 
 
