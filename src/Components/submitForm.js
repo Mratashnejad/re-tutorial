@@ -5,10 +5,10 @@ export const SubmitForm =()=>{
     const schema =  yup.object().shape({
         name : yup.string().required('Name is required'),
         family : yup.string(),
-        email : yup.string().email().required(),
+        email : yup.string().email('email is not true').required(),
         age : yup.number().positive().min(10).max(100),
         password : yup.string().min(8).max(128).matches(/[a-z]+/).matches(/[A-Z]+/).matches(/\d+/).required(),
-        confirmPassword : yup.string().oneOf([yup.ref('password')]).required()
+        confirmPassword : yup.string().oneOf([yup.ref('password')] , 'password not matches').required()
     })
 
     const {register , handleSubmit ,formState:{errors}} = useForm({resolver : yupResolver(schema)})
