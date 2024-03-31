@@ -19,6 +19,7 @@ import { Nav } from './pages/Nav';
 import { Footer } from './pages/Footer';
 import {Profile} from './pages/Profile';
 import { queries } from '@testing-library/react';
+import { SubmitForm } from './Components/submitForm';
 //profile context
 export const ProfileContext = createContext()
 
@@ -173,15 +174,17 @@ const client = new QueryClient({defaultOptions :{
 const [username , setUsername] = useState('alireza')
 
 return(
-
+  
 
   <div className="App">
+   
     <QueryClientProvider client={client}>
-    <ProfileContext.Provider value={{username , setUsername}}>
+    <ProfileContext.Provider value={{username , setUsername}}><br/>
       <Router>
         <div><h2>Header</h2></div>
         <Nav />
           <Routes>
+            
             <Route path='/' element={<Home/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/contact' element={<Contact/>}/>
@@ -190,11 +193,15 @@ return(
             <Route path='/profile' element={<Profile />}/>
             {/* <Profile username={username} setUsername={setUsername}/>}/> */}
             <Route path='*' element={<div>Not found</div>}/>
-          </Routes>
+          </Routes><br/>
+        <SubmitForm /><br/>
+
           <Footer />
         </Router>
       </ProfileContext.Provider>
       </QueryClientProvider>
+      
+
   </div>
 
 
