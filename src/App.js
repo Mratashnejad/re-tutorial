@@ -20,6 +20,7 @@ import { Footer } from './pages/Footer';
 import {Profile} from './pages/Profile';
 import { queries } from '@testing-library/react';
 import { SubmitForm } from './Components/submitForm';
+import { useToggle } from './useToggle';
 //profile context
 export const ProfileContext = createContext()
 
@@ -167,16 +168,20 @@ const client = new QueryClient({defaultOptions :{
   
 }})
 
-
+//custom hook
+//const [isVisible ,setInVisible] = useState(false)
+const [isVisible , toggle] = useToggle()
 
 //context  - state managments
 
 const [username , setUsername] = useState('alireza')
 
+
 return(
   
 
   <div className="App">
+
    
     <QueryClientProvider client={client}>
     <ProfileContext.Provider value={{username , setUsername}}><br/>
@@ -196,6 +201,13 @@ return(
           </Routes><br/>
         <SubmitForm /><br/>
 
+        {/* <button onClick={()=>setInVisible((prev)=>!prev)}>
+          {isVisible ? 'Hide' : 'Show'}
+        </button> */}
+        <button onClick={toggle}>
+          {isVisible ? 'Hide' : 'Show'}
+        </button>
+        {isVisible && <h1>this is my hidden text</h1>}
           <Footer />
         </Router>
       </ProfileContext.Provider>
