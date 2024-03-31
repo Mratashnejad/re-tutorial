@@ -3,7 +3,7 @@ import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 export const SubmitForm =()=>{
     const schema =  yup.object().shape({
-        name : yup.string().required(),
+        name : yup.string().required('Name is required'),
         family : yup.string(),
         email : yup.string().email().required(),
         age : yup.number().positive().min(10).max(100),
